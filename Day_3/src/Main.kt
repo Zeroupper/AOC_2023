@@ -47,7 +47,7 @@ fun main() {
             for (j in 0..(numColumns-1)) {
 
                 if (grid[i][j].isDigit()) {
-                    currentNum.plus(grid[i][j])
+                    currentNum += grid[i][j]
                     if(!isValid && isPartNumber(i,j)) {
                         isValid = true
                     }
