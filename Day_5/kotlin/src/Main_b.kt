@@ -6,6 +6,7 @@ data class Range(val destination: Long, val source: Long, val length: Long) {
 }
 
 fun main() {
+    val startTime = System.nanoTime()
     val fileName = "data_b.txt"
     val lines = File(fileName).readLines()
     var seeds = mutableListOf<Interval>()
@@ -51,8 +52,7 @@ fun main() {
         }
     }
 
-//    println(getIntersectedRanges(Range(65, 72, 1), allMapsList[allMapsList.size-5]), )
-
+    val calculationTime = System.nanoTime()
 
     fun getMinimumSeeds(level: Int, currentRanges: List<Range>,) : List<Long> {
         val possibleSeeds = mutableListOf<Long>()
@@ -113,5 +113,11 @@ fun main() {
 
     val locations = mapToLocation(possibleSeeds, allMapsList)
 
+    val endTime = System.nanoTime()
+
+    val allDuration = (endTime - startTime) / 1_000_000 // Convert nanoseconds to milliseconds
+    val calcDuration = (endTime - calculationTime) / 1_000_000 // Convert nanoseconds to milliseconds
+    println("Full time: $allDuration ms")
+    println("Calculation time: $calcDuration ms")
     println("Minimum seed -> ${locations.min()}")
 }
